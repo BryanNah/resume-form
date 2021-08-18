@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Application</title>
+    <link type="text/css" rel="stylesheet" href="./bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="./my.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function submitEmailForm(form) {
+            var obj = new XMLHttpRequest();
+            obj.onreadystatechange = function(){
+                if(obj.readyState === 4){
+                    if(obj.status === 200){
+                        var res = JSON.parse(obj.responseText);
+                        alert(res.message);
+                    }
+                    else{
+                        alert("XMLHttp status " + obj.status + ": " + obj.statusText);
+                    }
+                }
+            };
+            obj.open("post", form.action, true);
+            obj.setRequestHeader("Content-Type", "application/json"); // NOTICE: "application/json"
+            obj.send(JSON.stringify({ name: form.name.value, email: form.email.value, message: form.message.value }));
+            return false;
+        }
+    </script>
+</head>
+<body>
+<!-- Wrapper container -->
+<div class="row" style="border: 1px solid black; margin: 10px; padding: 20px; border-radius: 8px">
+    <div class="col-md-12 text-center" style="margin-bottom:20px;">
+        <img src="./download.jpg" class="img-responsive" alt="HNG Image" width="300px" height="150px"/>
+    </div>
+    <div class="col-md-12 text-center" style="margin-bottom: 20px;">
+        <h2 style="margin-bottom: 20px;"> Apply to this Internship</h2>
+        <h4> Instructions: <span>Please forward your resume to <span
+                style="text-decoration: underline; color: deepskyblue;">briannahabwe@gmail.com</span></span></h4>
+    </div>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <!-- Name input -->
+                <form action="/sendmail" class="contact-form" method="POST" onsubmit="return submitEmailForm(this);">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="firstName" class=""> First Name</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName"
+                                       placeholder="Enter your first name" required="" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lastName" class=""> Last Name</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName"
+                                       placeholder="Enter your last name" required="" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="email" class=""> Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                       placeholder="Enter your email" required="" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="phonenumber" class=""> Tel Phone Number</label>
+                                <input type="tel" class="form-control" id="phonenumber" name="phonenumber"
+                                       placeholder="Enter your telephone number" required="" value="" pattern="[0-9]{10}">
+                                <small>Format: 0707876665</small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="country" class=""> Country</label>
+                                <input type="text" class="form-control" id="country" name="country"
+                                       placeholder="Enter your country" required="" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="resume" class=""> Resume (pdf format only)</label>
+                                <input type="file" name="resume"  class="form-control" id="resume" accept=".pdf" required="">
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-center"><div class="form-group form-btn mt-5"><button class="enrollBtn" type="submit">Apply</button></div></div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
