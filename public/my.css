@@ -75,3 +75,7 @@ button, input, optgroup, select, textarea {
     top: 50%;
     left: 42%;
 }
+
+img {
+    width: 90%;
+}

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Job Application</title>
+    <link rel="icon" type="image/gif/jpg" href="./d.jpg">
     <link type="text/css" rel="stylesheet" href="./bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="./my.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -10,20 +11,19 @@
     <script type="text/javascript">
         function submitEmailForm(form) {
             var obj = new XMLHttpRequest();
-            obj.onreadystatechange = function(){
-                if(obj.readyState === 4){
-                    if(obj.status === 200){
+            obj.onreadystatechange = function () {
+                if (obj.readyState === 4) {
+                    if (obj.status === 200) {
                         var res = JSON.parse(obj.responseText);
                         alert(res.message);
-                    }
-                    else{
+                    } else {
                         alert("XMLHttp status " + obj.status + ": " + obj.statusText);
                     }
                 }
             };
             obj.open("post", form.action, true);
             obj.setRequestHeader("Content-Type", "application/json"); // NOTICE: "application/json"
-            obj.send(JSON.stringify({ name: form.name.value, email: form.email.value, message: form.message.value }));
+            obj.send(JSON.stringify({name: form.name.value, email: form.email.value, message: form.message.value}));
             return false;
         }
     </script>
@@ -31,13 +31,26 @@
 <body>
 <!-- Wrapper container -->
 <div class="row" style="border: 1px solid black; margin: 10px; padding: 20px; border-radius: 8px">
-    <div class="col-md-12 text-center" style="margin-bottom:20px;">
-        <img src="./download.jpg" class="img-responsive" alt="HNG Image" width="300px" height="150px"/>
+    <div class="col-sm-12" style="margin-bottom:20px;">
+        <div class="row">
+            <div class="col-sm-4">
+                <div><img src="./c.png" class="img-fluid" alt="HNG Image" height="150px"/></div>
+            </div>
+            <div class="col-sm-4">
+                <div><img src="./b.jpg" class="img-fluid" alt="Zuri Teams Image" height="150px"/></div>
+            </div>
+            <div class="col-sm-4">
+                <div><img src="./e.png" class="img-fluid" alt="I4G Image" height="150px"/></div>
+            </div>
+        </div>
     </div>
     <div class="col-md-12 text-center" style="margin-bottom: 20px;">
         <h2 style="margin-bottom: 20px;"> Apply to this Internship</h2>
-        <h4> Instructions: <span>Please forward your resume to <span
-                style="text-decoration: underline; color: deepskyblue;">briannahabwe@gmail.com</span></span></h4>
+        <h4 style="margin-bottom: 20px;"> Instructions:</h4>
+        <p style="margin-left: 20px; font-size: 16px;">1)  For more information refer to:
+            <a href="https://training.zuri.team/">Zuri HNG I4G Training</a> or <a href="https://zuri.team/">Zuri Teams</a></p>
+        <p style="margin-left: 20px; font-size: 16px;">1)  Please forward your resume to <span
+                style="text-decoration: underline; color: #0d6efd;">briannahabwe@gmail.com</span></p>
     </div>
     <div class="col-md-12">
         <div class="row">
@@ -71,7 +84,8 @@
                             <div class="form-group">
                                 <label for="phonenumber" class=""> Tel Phone Number</label>
                                 <input type="tel" class="form-control" id="phonenumber" name="phonenumber"
-                                       placeholder="Enter your telephone number" required="" value="" pattern="[0-9]{10}">
+                                       placeholder="Enter your telephone number" required="" value=""
+                                       pattern="[0-9]{10}">
                                 <small>Format: 0707876665</small>
                             </div>
                         </div>
@@ -85,10 +99,15 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="resume" class=""> Resume (pdf format only)</label>
-                                <input type="file" name="resume"  class="form-control" id="resume" accept=".pdf" required="">
+                                <input type="file" name="resume" class="form-control" id="resume" accept=".pdf"
+                                       required="">
                             </div>
                         </div>
-                        <div class="col-md-12 text-center"><div class="form-group form-btn mt-5"><button class="enrollBtn" type="submit">Apply</button></div></div>
+                        <div class="col-md-12 text-center">
+                            <div class="form-group form-btn mt-5">
+                                <button class="enrollBtn" type="submit">Apply</button>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
